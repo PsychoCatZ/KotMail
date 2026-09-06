@@ -1,0 +1,35 @@
+{
+  "name": "kotmail",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Read-only Yandex Mail MCP interoperability spike for ChatGPT",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "bootstrap": "node scripts/bootstrap.mjs",
+    "build": "tsc",
+    "setup": "npm run build --silent && node dist/src/setup/server.js",
+    "mcp": "npm run build --silent && node dist/src/mcp/server.js",
+    "check": "tsc --noEmit",
+    "test": "npm run build --silent && node --import ./test/env.mjs --test dist/test/*.test.js",
+    "verify": "npm run build --silent && node dist/src/cli/verify.js",
+    "smoke:mcp": "npm run build --silent && node dist/src/cli/mcp-smoke.js",
+    "smoke:all": "npm run build --silent && node dist/src/cli/mcp-smoke.js --all",
+    "tunnel:setup": "npm run build --silent && node dist/src/tunnel/setup.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/node": "^2.0.0",
+    "@modelcontextprotocol/server": "^2.0.0",
+    "dotenv": "^17.2.2",
+    "imapflow": "^1.0.196",
+    "mailparser": "^3.7.4",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/mailparser": "^3.4.6",
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
+  }
+}
